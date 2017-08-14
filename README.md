@@ -25,29 +25,33 @@ generate an SVG image.
 Alternatively, graphs can be generated inline, by using `dot` (or `circo`) as
 the language identifier for a fenced code block.
 
-```md
-  digraph graphname {
-    a -> b;
-    b -> c;
-    a -> c;
-  }
-```
-
-## Example
-
-Given a file, `example.md`, which contains the following Markdown:
-
-```md
-# dot code block
-
-\```dot
+<pre>
+```dot
 digraph graphname {
   a -> b;
   b -> c;
   a -> c;
 }
-\```
 ```
+</pre>
+
+See this project's [fixtures](test/fixtures) for more examples.
+
+## Example
+
+Given a file, `example.md`, which contains the following Markdown:
+
+<pre>
+# dot code block
+
+```dot
+digraph graphname {
+  a -> b;
+  b -> c;
+  a -> c;
+}
+```
+</pre>
 
 Using remark like follows:
 
