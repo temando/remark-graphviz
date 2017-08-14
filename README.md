@@ -1,5 +1,9 @@
 # remark-graphviz
 
+[![NPM](https://img.shields.io/npm/v/remark-graphviz.svg)](https://npmjs.org/packages/remark-graphviz/)
+[![Travis CI](https://img.shields.io/travis/temando/remark-graphviz.svg)](https://travis-ci.org/temando/remark-graphviz)
+[![MIT License](https://img.shields.io/github/license/temando/remark-graphviz.svg)](https://en.wikipedia.org/wiki/MIT_License)
+
 Replaces graphs defined in [`dot`](http://www.graphviz.org/content/dot-language) with rendered SVGs.
 
 ## Installation
