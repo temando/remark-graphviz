@@ -4,7 +4,8 @@
 [![Travis CI](https://img.shields.io/travis/temando/remark-graphviz.svg)](https://travis-ci.org/temando/remark-graphviz)
 [![MIT License](https://img.shields.io/github/license/temando/remark-graphviz.svg)](https://en.wikipedia.org/wiki/MIT_License)
 
-Replaces graphs defined in [`dot`](http://www.graphviz.org/content/dot-language) with rendered SVGs.
+Replaces graphs defined in [`dot`](http://www.graphviz.org/content/dot-language)
+with rendered SVGs.
 
 ## Installation
 
@@ -66,8 +67,8 @@ remark()
   .use(graphviz)
   .process(example, function (err, file) {
     if (err) throw err;
+
     console.log(String(file))
-    })
   });
 ```
 
@@ -80,7 +81,9 @@ being transformed to:
 ![](./6b03e143dc2a47a93496133d692c44d5ec012b57.svg "`dot` image")
 ```
 
-To change where the SVG's are written, set `data.destinationDir` on the vFile:
+To change where the SVG's are written, set `data.destinationFilePath` on the
+vFile. This following shows how you could process a file from one directory and
+output the transformed file to another:
 
 ```js
 var vfile = require('to-vfile');
@@ -89,17 +92,16 @@ var graphviz = require('remark-graphviz');
 
 var example = vfile.readSync('example.md');
 example.data = {
-  destinationDir: '~/absolute/path/to/output'
+  destinationFilePath: 'out/example.md'
 };
 
 remark()
   .use(graphviz)
   .process(example, function (err, file) {
     if (err) throw err;
-    vfile.writeSync({ path: example.destinationFilePath });
-    })
+
+    vfile.writeSync({ path: file.data.destinationFilePath });
   });
 ```
 
-This allows you process files from one directory, and save the
-results to another.
+Both `example.md` and the generated SVG will reside in the `/out` directory.

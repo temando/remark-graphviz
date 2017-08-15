@@ -1,6 +1,6 @@
 {
   "name": "remark-graphviz",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A remark plugin for Markdown that replaces graphs defined in `dot` with rendered SVGs.",
   "license": "MIT",
   "keywords": [

@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 Nil.
 
+## [v0.2.2] - 2017-08-15
+
+### Fixed
+
+- Corrections to the usage in the README.
+
 ## [v0.2.1] - 2017-08-14
 
 ### Fixed
