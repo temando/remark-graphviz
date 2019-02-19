@@ -49,15 +49,21 @@ function replaceUrlWithGraph(node, vFile) {
  *
  * @param {object} ast
  * @param {vFile} vFile
+ * @param {boolean} inlineMode
  * @return {function}
  */
-function visitCodeBlock(ast, vFile) {
+function visitCodeBlock(ast, vFile, inlineMode) {
   return visit(ast, 'code', (node, index, parent) => {
     const { lang, value, position } = node;
     const destinationDir = getDestinationDir(vFile);
 
     // If this codeblock is not a known graphviz format, bail.
     if (!validLanguages.includes(lang)) {
+      return node;
+    }
+
+    if (inlineMode) {
+      parent.children.splice(index, 1, utils.renderToImgTag(value, lang));
       return node;
     }
 
@@ -116,7 +122,9 @@ function visitImage(ast, vFile) {
  * @link https://github.com/vfile/vfile
  * @return {function}
  */
-function graphviz() {
+function graphviz(options = {}) {
+  const inlineMode = options.inline || false;
+
   /**
    * @param {object} ast MDAST
    * @param {vFile} vFile
@@ -124,7 +132,7 @@ function graphviz() {
    * @return {object}
    */
   return function transformer(ast, vFile, next) {
-    visitCodeBlock(ast, vFile);
+    visitCodeBlock(ast, vFile, inlineMode);
     visitLink(ast, vFile);
     visitImage(ast, vFile);
 
