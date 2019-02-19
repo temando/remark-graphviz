@@ -7,6 +7,21 @@ const PLUGIN_NAME = 'remark-graphviz';
 
 /**
  * Accepts the `source` of the graph, and an `engine` to render an SVG using viz.js.
+ * Returns a MDAST representation of a HTML node.
+ *
+ * @param  {string} source
+ * @param  {string} engine 'dot' or 'circo'
+ * @return {object}
+ */
+function renderToImgTag(source, engine) {
+  return {
+    type: 'html',
+    value: `<img src="data:image/svg+xml;utf8,${encodeURIComponent(viz(source, { engine }))}" />`,
+  };
+}
+
+/**
+ * Accepts the `source` of the graph, and an `engine` to render an SVG using viz.js.
  * Returns the path to the rendered SVG.
  *
  * @param  {string} destination
@@ -42,5 +57,6 @@ function getDestinationDir(vFile) {
 
 module.exports = {
   render,
+  renderToImgTag,
   getDestinationDir,
 };
